@@ -48,7 +48,7 @@ export default function AboutGame() {
             </div>
             <motion.div whileHover={{ scale: 1.02 }}>
               <img 
-                src="src\assets\images\fondoInicio.jpg" 
+                src="\images\fondoInicio.jpg" 
                 alt="Mapa del Mundo" 
                 className="rounded-xl shadow-2xl"
               />
