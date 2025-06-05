@@ -7,40 +7,47 @@ export default function Chat() {
   const { supabase } = useSupabase()
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState('')
-  
+
   useEffect(() => {
     if (!user) return
-    
+
     loadMessages()
-    
+
     const subscription = supabase
       .channel('public:messages')
       .on(
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'messages' },
         async (payload) => {
-          // Obtener username del perfil para nuevos mensajes
+          const { user_id, content, id, created_at } = payload.new
+
+          // Obtener el username desde profiles
           const { data: profileData } = await supabase
             .from('profiles')
             .select('username')
-            .eq('id', payload.new.user_id)
+            .eq('id', user_id)
             .single()
-          
-          setMessages(prev => [...prev, {
-            ...payload.new,
-            username: profileData?.username || payload.new.user_id // Fallback al user_id si no hay username
-          }])
+
+          setMessages(prev => [
+            ...prev,
+            {
+              id,
+              content,
+              user_id,
+              created_at,
+              username: profileData?.username || user_id
+            }
+          ])
         }
       )
       .subscribe()
-    
+
     return () => {
       supabase.removeChannel(subscription)
     }
   }, [user])
-  
+
   const loadMessages = async () => {
-    // Cargar mensajes con JOIN para obtener username de profiles
     const { data, error } = await supabase
       .from('messages')
       .select(`
@@ -49,52 +56,36 @@ export default function Chat() {
       `)
       .order('created_at', { ascending: true })
       .limit(50)
-    
+
     if (error) {
       console.error('Error loading messages:', error)
       return
     }
-    
-    // Mapear los resultados para incluir el username correcto
-    const formattedMessages = data.map(msg => ({
+
+    const formatted = data.map((msg) => ({
       ...msg,
       username: msg.profile?.username || msg.user_id
     }))
-    
-    setMessages(formattedMessages)
+
+    setMessages(formatted)
   }
-  
+
   const handleSendMessage = async () => {
     if (!newMessage.trim() || !user) return
-    
-    // Primero obtener el username del perfil
-    const { data: profileData, error: profileError } = await supabase
-      .from('profiles')
-      .select('username')
-      .eq('id', user.id)
-      .single()
-    
-    if (profileError) {
-      console.error('Error fetching profile:', profileError)
-      return
-    }
-    
-    const { error } = await supabase
-      .from('messages')
-      .insert({
-        content: newMessage,
-        user_id: user.id,
-        username: profileData.username // Usar el username del perfil
-      })
-    
+
+    const { error } = await supabase.from('messages').insert({
+      content: newMessage,
+      user_id: user.id
+    })
+
     if (error) {
       console.error('Error sending message:', error)
       return
     }
-    
+
     setNewMessage('')
   }
-  
+
   if (!user) {
     return (
       <div className="container mx-auto p-4 text-center">
@@ -103,11 +94,11 @@ export default function Chat() {
       </div>
     )
   }
-  
+
   return (
     <div className="container mx-auto p-4 max-w-4xl">
       <h2 className="text-2xl font-bold mb-6">Chat Global</h2>
-      
+
       <div className="bg-gray-800 rounded-lg p-4 h-96 overflow-y-auto mb-4">
         {messages.map((msg) => (
           <div key={msg.id} className="mb-3">
@@ -116,13 +107,13 @@ export default function Chat() {
           </div>
         ))}
       </div>
-      
+
       <div className="flex gap-2">
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+          onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
           className="flex-grow p-2 rounded bg-gray-700 text-white"
           placeholder="Escribe un mensaje..."
         />
