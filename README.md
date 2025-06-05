@@ -18,7 +18,7 @@
 
 1. Clona el repositorio:
 ```bash
-[git clone https://github.com/TFGPoryecto0/Web.git)]
+[git clone https://github.com/TFGPoryecto0/Web.git]
 cd /Web
 npm install
 npm run dev
