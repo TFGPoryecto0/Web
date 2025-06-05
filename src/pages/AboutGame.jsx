@@ -6,7 +6,7 @@ export default function AboutGame() {
     {
       name: "Elizabeth",
       description: "La protagonista de nuestra historia, una detective con un misterio entre manos.",
-      image: "/hero.jpg",
+      image: "/images/detective.png",
       abilities: ["Determinación", "Valor", "Inteligente"]
     },
     {
