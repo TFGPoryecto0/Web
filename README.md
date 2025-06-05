@@ -1,12 +1,26 @@
-# React + Vite
+# PROYECTO 0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Descripción del proyecto web**
+> Esta es la web del proyecto Proyecto 0, desarrollada como parte del Trabajo de Fin de Grado de DAM. La web permite ver el contenido sobre el juego, chatear con más personas, ver la tabla de clasificaciones, explicación de la historia del juego en detalle y el registro como usuario de la web.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React + Vite
+- JavaScript
+- Tailwind CSS
+- Supabase 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+1. Clona el repositorio:
+```bash
+[git clone https://github.com/TFGPoryecto0/Web.git)]
+cd /Web
+npm install
+npm run dev
+
+
