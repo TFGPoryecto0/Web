@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className="flex space-x-6">
         <Link to="/" className="hover:text-yellow-400 transition">Inicio</Link>
         <Link to="/chat" className="hover:text-yellow-400 transition">Chat</Link>
-        <Link to="/leaderboard" className="hover:text-yellow-400 transition">Leaderboard</Link>
+        <Link to="/leaderboard" className="hover:text-yellow-400 transition">Clasificación</Link>
         <Link to="/about" className="hover:text-yellow-400 transition">Sobre el Juego</Link>
         
         {user ? (
