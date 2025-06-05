@@ -41,7 +41,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">ESCAPE ROOM</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">PROYECTO 0</h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">Una experiencia de juego única que te mantendrá al borde de tu asiento</p>
           <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105">
             Descargar Ahora
