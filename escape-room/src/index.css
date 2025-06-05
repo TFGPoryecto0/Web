@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Personalización adicional */
+body {
+  background-color: theme('colors.gray.900');
+  color: theme('colors.white');
+  scroll-behavior: smooth;
+}
+
+/* Animaciones personalizadas */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Efecto de brillo para elementos interactivos */
+.glow-on-hover {
+  transition: text-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+}
