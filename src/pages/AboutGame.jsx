@@ -12,7 +12,7 @@ export default function AboutGame() {
     {
       name: "Red John",
       description: "El antagonista principal, escondido entre las sombras, evitando que nadie salga de este hospital.",
-      image: "public/images/antagonista.png",
+      image: "/images/antagonista.png",
       abilities: ["Sombrío", "Espeluznante", "Manipulador"]
     },
     // Agrega más personajes
