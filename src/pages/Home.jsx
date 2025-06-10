@@ -10,6 +10,7 @@ export default function Home() {
     const playVideo = async () => {
       try {
         await videoRef.current.play()
+        
       } catch (err) {
         console.log("Autoplay prevented, showing fallback")
       }
@@ -22,16 +23,16 @@ export default function Home() {
     <div className="text-white">
       {/* Hero Section with Video */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <video 
-          ref={videoRef}
-          className="absolute w-full h-full object-cover z-0"
-          muted
-          loop
-          playsInline
-          poster="/assets/poster.jpg"
-        >
-          <source src="/assets/game-trailer.mp4" type="video/mp4" />
-        </video>
+      <video 
+        ref={videoRef}
+        className="absolute w-full h-full object-cover z-0"
+        muted
+        autoPlay
+        loop
+        playsInline
+      >
+        <source src="/videos/horror.mp4" type="video/mp4" />
+      </video>
         
         <div className="absolute inset-0 bg-black bg-opacity-50 z-1"></div>
         
@@ -69,7 +70,7 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               className="rounded-xl overflow-hidden shadow-2xl"
             >
-              <img src="/assets/game-screenshot1.jpg" alt="Game Screenshot" className="w-full" />
+              <img src="\images\fondoInicio.jpg" alt="Game Screenshot" className="w-full" />
             </motion.div>
           </div>
         </div>
